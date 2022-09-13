@@ -10,7 +10,7 @@
 
 * [Typescript](https://www.typescriptlang.org/)      
 * [React](https://reactjs.org/)      
-* [Styled Components](https://sass-lang.com/)
+* [Sass](https://sass-lang.com/)
 
 ## :checkered_flag: Instructions
 
