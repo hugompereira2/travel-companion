@@ -1,0 +1,56 @@
+#CardDetails {
+    width: 95%;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 6px 0px;
+    background: white;
+
+    img {
+        border-radius: 8px 8px 0 0;
+        max-width: 100% !important;
+        height: 320px !important;
+    }
+
+    .description {
+        padding: 12px 12px 0;
+
+        .card_row:nth-child(2) {
+            margin: 12px 0;
+        }
+
+        .card_row:last-child {
+            margin-top: 15px;
+        }
+    }
+
+    .svg-margin {
+        margin-right: 12px;
+    }
+
+    .card_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .button_action {
+        display: flex;
+        margin: 12px 0;
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            font-weight: 500;
+            padding: 8px 10px;
+            font-size: 1.1rem;
+        }
+
+        button:first-child {
+            margin-right: 12px;
+        }
+    }
+}

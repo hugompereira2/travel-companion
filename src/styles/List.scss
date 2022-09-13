@@ -1,0 +1,51 @@
+#List {
+    padding-right: 20px;
+    height: 100%;
+
+    form {
+        padding-top: 20px;
+
+        label {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+
+    .inputs {
+        margin-top: 12px;
+        flex-wrap: wrap;
+        display: flex;
+        gap: 12px;
+    }
+
+    .inputs>* {
+        min-width: 264px;
+    }
+
+    .card_list {
+        margin-top: 25px;
+        max-height: 442px;
+        overflow: auto;
+    }
+
+    // scrollbar css Start
+
+    ::-webkit-scrollbar {
+        background: white !important;
+        border-radius: 12px;
+        width: 10px !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #40C3D2 !important;
+        height: 30px;
+        border-radius: 20px !important;
+        background-clip: padding-box;
+    }
+
+    ::-webkit-scrollbar-track {
+        margin: 0px 0;
+    }
+
+    // scrollbar css End
+}

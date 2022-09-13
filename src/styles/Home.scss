@@ -1,0 +1,49 @@
+#Home {
+    max-width: 1440px;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0 auto;
+
+    .alert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .alert-message {
+        color: red;
+        font-size: 1.6rem;
+        font-weight: 500;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.999);
+        }
+
+        50% {
+            transform: scale(0.888);
+        }
+
+        100% {
+            transform: translatey(0.999);
+        }
+    }
+
+    .main {
+        height: 100%;
+        padding: 20px;
+        display: flex;
+        height: calc(100% - 82px);
+    }
+
+    .main>div:first-child {
+        width: 40% !important;
+    }
+
+    .main>div:last-child {
+        width: 60% !important;
+    }
+}
