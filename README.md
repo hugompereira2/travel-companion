@@ -1,4 +1,4 @@
-<h1 align="center">✈️ Travel Companion | FrontEnd </h1>
+<h1 align="center">✈️ Travel Companion | FrontEnd (in progress) </h1>
 
 <div align="center">
   <sub> Made with 💖 by
