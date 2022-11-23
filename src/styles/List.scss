@@ -1,6 +1,7 @@
 #List {
     padding-right: 20px;
     height: 100%;
+    min-width: 290px;
 
     form {
         padding-top: 20px;
@@ -9,6 +10,20 @@
             font-size: 1.2rem;
             font-weight: 500;
         }
+    }
+
+    .search_inputs {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .centered-loading {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .inputs {
@@ -24,7 +39,6 @@
 
     .card_list {
         margin-top: 25px;
-        max-height: 442px;
         overflow: auto;
     }
 
@@ -48,4 +62,10 @@
     }
 
     // scrollbar css End
+
+    @media screen and (max-width: 900px) {
+        .card_list {
+            max-height: 250px;
+        }
+    }
 }

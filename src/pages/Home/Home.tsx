@@ -8,16 +8,22 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
     const [places, setPlaces] = useState<any>([]);
+    const [filteredPlaces, setFilteredPlaces] = useState<any>([]);
     const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+    const [selected, setSelected] = useState("");
+    const [options, setOptions] = useState("restaurants");
+    const [rating, setRating] = useState(0);
     const [loaded, setLoaded] = useState(false);
+    const [searching, setSearching] = useState(false);
     const [bounds, setBounds] = useState({
         ne: { lat: 0, lng: 0 },
         sw: { lat: 0, lng: 0 }
     });
 
     const fetchData = async () => {
-        const data = await getPlacesData(bounds.sw, bounds.ne);
-        setPlaces(data);
+        const data = await getPlacesData(options, bounds.sw, bounds.ne);
+        setPlaces(data.filter((place:any) => place.ranking && place.rating));
+        setSearching(false);
     }
 
     useEffect(() => {
@@ -28,21 +34,30 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
+        const filtered = places.filter((place: any) => Number(String(place.rating).replace(".", "")) > rating)
+
+        setFilteredPlaces(filtered);
+    }, [rating]);
+
+    useEffect(() => {
+        setSearching(true);
         fetchData();
-    }, [coordinates, bounds]);
+        setFilteredPlaces([]);
+    }, [coordinates, bounds, options]);
 
     return (
         <div id="Home">
             <Header />
             <div className="main">
-                <List places={places}/>
+                <List places={filteredPlaces.length ? filteredPlaces : places} selected={selected} options={options} setOptions={setOptions} setRating={setRating} loading={searching}/>
                 {
                     loaded ?
                         <GoogleMaps
                             setCoordinates={setCoordinates}
                             setBounds={setBounds}
                             coordinates={coordinates}
-                            places={places}
+                            places={filteredPlaces.length ? filteredPlaces : places}
+                            setSelected={setSelected}
                         />
                         :
                         <div className="alert">

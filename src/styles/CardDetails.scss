@@ -11,7 +11,7 @@
     img {
         border-radius: 8px 8px 0 0;
         max-width: 100% !important;
-        height: 320px !important;
+        max-height: 320px;
     }
 
     .description {
@@ -51,6 +51,12 @@
 
         button:first-child {
             margin-right: 12px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        img {
+            max-height: 120px !important;
         }
     }
 }

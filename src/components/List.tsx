@@ -1,20 +1,19 @@
 
 import '../styles/List.scss';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
+import { RotatingLines } from 'react-loader-spinner'
 import CardDetails from "./CardDetails";
 
 const List = (props: any) => {
-    const [type, setType] = useState('');
-    const [rating, setRating] = useState<number>();
 
     const options = [
-        { value: 'Restaurants', label: 'Restaurants' },
-        { value: 'Hotels', label: 'Hotels' },
-        { value: 'Attractions', label: 'Attractions' }
+        { value: "restaurants", label: 'Restaurants' },
+        { value: "hotels", label: 'Hotels' },
+        { value: "attractions", label: 'Attractions' }
     ]
 
-    const Rating = [
+    const rating = [
         { value: 0, label: 'All' },
         { value: 30, label: 'Above 3.0' },
         { value: 40, label: 'Above 4.0' },
@@ -22,35 +21,47 @@ const List = (props: any) => {
     ]
 
     const handleChangeType = (type: string) => {
-        setType(type)
+        props.setOptions(type)
     };
 
     const handleChangeRatng = (type: number) => {
-        setRating(type)
+        props.setRating(type)
     };
-
-    // useEffect(() => {
-    //     console.log(props.places)
-    // }, [])
 
     return (
         <div id="List">
             <div className="search_inputs">
                 <h1>Restaurants, Hotels &amp; Attractions around you</h1>
-                <form>
-                    <label>Type</label>
-                    <div className="inputs">
-                        <Select onChange={(obj) => obj ? handleChangeType(obj.value) : ''} options={options} defaultValue={options[0]} />
-                        <Select onChange={(obj) => obj ? handleChangeRatng(obj.value) : ''} placeholder="Rating" options={Rating} />
+                {props.loading
+                    ? <div className="centered-loading">
+                        <RotatingLines
+                            strokeColor="grey"
+                            strokeWidth="5"
+                            width="96"
+                            visible={true}
+                        />
                     </div>
-                </form>
-                <div className="card_list">
-                    {
-                        props.places?.map((place: any, index: number) => {
-                            return <CardDetails key={index} places={place} />
-                        })
-                    }
-                </div>
+                    : <React.Fragment>
+                        <form>
+                            <label>Type</label>
+                            <div className="inputs">
+                                <Select onChange={(obj) => obj ? handleChangeType(obj.value) : ''} options={options} value={options.filter((e) => {
+                                    return e.value === props.options;
+                                })} />
+                                <Select onChange={(obj) => obj ? handleChangeRatng(obj.value) : ''} placeholder="Rating" options={rating} defaultValue={rating[0]} />
+                            </div>
+                        </form>
+                        <div className="card_list">
+                            {
+                                !props.places.length && !props.loading
+                                ? "drag the map to start..."
+                                : props.places?.map((place: any, index: number) => {
+                                    return <CardDetails key={index} places={place} selected={place.location_id == props.selected} />
+                                })
+                            }
+                        </div>
+                    </React.Fragment>
+                }
             </div>
         </div>
     )

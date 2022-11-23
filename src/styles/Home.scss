@@ -46,4 +46,23 @@
     .main>div:last-child {
         width: 60% !important;
     }
+
+    @media screen and (max-width: 900px) {
+        .main {
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+
+        .main>div:first-child {
+            width: 100% !important;
+            min-width: auto !important;
+            padding-right: 0px !important;
+            margin-bottom: 20px;
+        }
+
+        .main>div:last-child {
+            width: 100% !important;
+            min-width: auto !important;
+        }
+    }
 }
